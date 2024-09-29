@@ -1,0 +1,201 @@
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+ * You can edit, run, and share this code.
+ * play.kotlinlang.org
+ */
+
+import java.util.*
+
+
+fun Prime(number:Int): Boolean{
+   if (number < 2) return false
+   for (i in 2..number / 2){
+      if(number % i == 0){
+         return false
+      }
+   }
+
+   return true
+}
+
+
+
+fun double(x: Int):Int = x * 2
+
+
+fun printEvenNumbers(numbers: IntArray) = numbers.filter { it % 2 == 0 }.forEach { println(it) }
+
+
+fun messageCoding(msg: String, func: (String) -> String): String {
+   return func(msg)
+}
+
+
+fun encodeString(message: String): String {
+   return Base64.getEncoder().encodeToString(message.toByteArray())
+}
+
+
+fun decodeString(encodedMessage: String): String {
+   return String(Base64.getDecoder().decode(encodedMessage))
+}
+
+
+fun main() {
+
+   //1 Feladat
+
+   val sum = 2 + 3
+   println("SUM = $sum")
+   println("----------------------------------------------------------------------")
+   println("SUM_2 = $(2 + 3)")
+   println("----------------------------------------------------------------------")
+
+
+   //2 Feladat
+
+   val daysOfweek = listOf("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+
+   for (day : String in daysOfweek) {
+      println(day)
+   }
+   println("----------------------------------------------------------------------")
+
+   daysOfweek.filter {it.startsWith("T")}.forEach{
+      println(it)
+   }
+
+   println("----------------------------------------------------------------------")
+
+   daysOfweek.filter {it.contains("e")}.forEach{
+      println(it)
+   }
+
+   println("----------------------------------------------------------------------")
+
+   daysOfweek.filter {it.length == 6}.forEach{
+      println(it)
+   }
+
+   println("----------------------------------------------------------------------")
+
+
+
+   //3 Feladat
+
+   for (i in 1..100){
+      if (Prime(i))
+         println(i)
+   }
+
+
+   //4 Feladat
+
+   val message = "Valami szoveg amit kodolunk"
+
+
+   val encodedMessage = messageCoding(message, ::encodeString)
+   println("Encoded message: $encodedMessage")
+
+
+   val decodedMessage = messageCoding(encodedMessage, ::decodeString)
+   println("Decoded message: $decodedMessage")
+
+   println("----------------------------------------------------------------------")
+   //5 Feladat
+
+   val numbers = intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+   println("Even numbers:")
+   printEvenNumbers(numbers)
+
+   //6 Feladat
+
+   val numberslist = listOf(1, 2, 3, 4, 5)
+
+ //  Double the elements of a list of integers and print it.
+   val doubledNumbers = numberslist.map { it * 2 }
+   println("Dupla elem: $doubledNumbers")
+   println("----------------------------------------------------------------------")
+
+//Print the days of week capitalized (e.g. MONDAY for Monday)
+   val capitalizedDays = daysOfweek.map { it.uppercase() }
+   println("Capitalized days: $capitalizedDays")
+   println("----------------------------------------------------------------------")
+
+//Print the first character of each day capitalized (e.g. m for Monday)
+   val firstCharDays = daysOfweek.map { it.first().uppercaseChar() }
+   println("First character of each day: $firstCharDays")
+   println("----------------------------------------------------------------------")
+
+//Print the length of days (number of characters, e.g. Monday → 6)
+   val lengthOfDays = daysOfweek.map { it.length }
+   println("Length of days: $lengthOfDays")
+   println("----------------------------------------------------------------------")
+
+//Compute the average length of days (in number of characters)
+   val averageLength = lengthOfDays.average()
+   println("Average length of days: $averageLength")
+   println("----------------------------------------------------------------------")
+
+   //7 Feladat
+
+   val mutableDaysOfWeek = daysOfweek.toMutableList()
+   mutableDaysOfWeek.removeIf { it.contains("n") }
+   println("Mutable days of week: $mutableDaysOfWeek")
+   println("----------------------------------------------------------------------")
+
+
+   mutableDaysOfWeek.forEachIndexed { index, day ->
+      println("Item at $index is $day")
+   }
+   println("----------------------------------------------------------------------")
+
+
+
+   mutableDaysOfWeek.sort()
+   println("Sorted mutable days of week: $mutableDaysOfWeek")
+   println("----------------------------------------------------------------------")
+
+
+   //8 Feladat
+
+   //Generate an array of 10 random integers between 0 and 100, and use forEach to print
+   //each element of the array in a new line.
+   val randomNumbers = IntArray(10) { (0..100).random() }
+   randomNumbers.forEach { println(it) }
+   println("----------------------------------------------------------------------")
+
+   //Print the array sorted in ascending order!
+   val sortedArray = randomNumbers.sortedArray()
+   println("Sorted array: ${sortedArray.joinToString(", ")}")
+   println("----------------------------------------------------------------------")
+
+
+   //Check whether the array contains any even number!
+   val containsEven = randomNumbers.any { it % 2 == 0 }
+   println("Array contains even number: $containsEven")
+   println("----------------------------------------------------------------------")
+
+
+
+   //Check whether all the numbers are even!
+   val allEven = randomNumbers.all { it % 2 == 0 }
+   println("All numbers are even: $allEven")
+   println("----------------------------------------------------------------------")
+
+
+   //Calculate the average of generated numbers and print it using forEach!
+   val averageOfNumbers = randomNumbers.average()
+   println("Average of generated numbers: $averageOfNumbers")
+   println("----------------------------------------------------------------------")
+
+
+
+
+//   val number = 5
+//   val result = double(number)
+//   println("The double of $number is $result")
+
+}
