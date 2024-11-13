@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
     implementation (libs.androidx.recyclerview.v121)
     implementation(libs.gson)
     implementation(libs.androidx.core.ktx)

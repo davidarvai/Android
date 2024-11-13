@@ -8,16 +8,15 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.IOException
 
-class RecipeRepository() {
+class RecipeRepository {
 
-    fun getRecipeFromJson(context: Context): List<RecipeModel> {
+    fun getRecipesFromJson(context: Context): List<RecipeModel> {
         lateinit var jsonString: String
         try {
-            jsonString = context.assets.open("more_recipes.json").bufferedReader().use {
-                it.readText()
-            }
-
-
+            jsonString =
+                context.assets.open("more_recipes.json")
+                    .bufferedReader()
+                    .use { it.readText() }
         } catch (ioException: IOException) {
             Log.e(TAG, "Error occured while reading JSON file: $ioException")
         }
@@ -25,10 +24,8 @@ class RecipeRepository() {
         val type = object : TypeToken<List<RecipeDTO>>() {}.type
         val recipeDTOList: List<RecipeDTO> = Gson().fromJson(jsonString, type)
 
-        val recipeList = recipeDTOList.toModelList()
+        val recipesList = recipeDTOList.toModelList()
 
-        return recipeList
+        return recipesList
     }
-
-
 }
