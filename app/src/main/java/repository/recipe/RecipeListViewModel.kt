@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class RecipeListViewModel() : ViewModel() {
-    var recipesList : MutableLiveData<List<RecipeModel>> = MutableLiveData()
+class RecipeListViewModel(): ViewModel() {
+
+    var recipesList: MutableLiveData<List<RecipesModel>> = MutableLiveData()
 
     private val repository: RecipeRepository = RecipeRepository()
 
@@ -13,4 +14,6 @@ class RecipeListViewModel() : ViewModel() {
         val recipes = repository.getRecipesFromJson(context)
         recipesList.value = recipes
     }
+
+
 }

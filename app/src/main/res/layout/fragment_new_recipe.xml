@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--  Title  -->
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:hint="Title"
+            android:textColor="#FFFFFF"
+            android:inputType="text"/>
+
+        <!--  Description  -->
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:hint="Description"
+            android:textColor="#FFFFFF"
+            android:inputType="textMultiLine"/>
+
+        <!--  Picture URL  -->
+        <EditText
+            android:id="@+id/et_picture_url"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:textColor="#FFFFFF"
+            android:hint="Picture URL"
+            android:inputType="textUri"/>
+
+        <!--  Video URL  -->
+        <EditText
+            android:id="@+id/et_video_url"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:hint="Video URL"
+            android:textColor="#FFFFFF"
+            android:inputType="textUri"/>
+
+        <!--  Ingredients  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingredients"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/ingredients_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:hint="#1 Enter ingredient"
+                android:textColor="#FFFFFF"
+                android:inputType="text"/>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_add_ingredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Ingredient"
+            android:layout_marginTop="8dp"/>
+
+        <!--  Instructions  -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Instructions"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/instructions_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:hint="#1 Enter instruction"
+                android:textColor="#FFFFFF"
+                android:inputType="text"/>
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn_add_instruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Instruction"
+            android:layout_marginTop="8dp"/>
+
+        <!--  Save Recipe Button  -->
+        <Button android:id="@+id/btn_save_recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Recipe"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#D4E157"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+</ScrollView>

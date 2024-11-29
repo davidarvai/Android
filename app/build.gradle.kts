@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.android_project"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.android_project"
@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation (libs.glide)
+    implementation(libs.androidx.media3.common.ktx)
     annotationProcessor (libs.compiler)
     implementation (libs.androidx.recyclerview.v121)
     implementation(libs.gson)
