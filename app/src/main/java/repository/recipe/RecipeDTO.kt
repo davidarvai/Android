@@ -13,7 +13,7 @@ data class RecipesDTO(
     val numServings: Int,
     val components: List<ComponentDTO>?,
     val instructions: List<InstructionDTO>?,
-    val nutrition: NutritionDTO?  // Nutrition added to DTO
+    val nutrition: NutritionDTO? // Nutrition added to DTO
 )
 
 data class NutritionDTO(
@@ -31,9 +31,10 @@ data class RecipesModel(
     val description: String,
     val thumbnailUrl: String,
     val keywords: String,
+    val originalVideoUrl: String, // Added this field
     val components: List<ComponentModel> = emptyList(),
     val instructions: List<InstructionModel> = emptyList(),
-    val nutrition: NutritionModel? = null  // Added nutrition to the model
+    val nutrition: NutritionModel? = null // Added nutrition to the model
 )
 
 data class ComponentModel(
@@ -120,9 +121,10 @@ fun RecipesDTO.toModel(): RecipesModel {
         description = this.description,
         thumbnailUrl = this.thumbnailUrl,
         keywords = this.keywords,
+        originalVideoUrl = this.originalVideoUrl, // Map originalVideoUrl
         components = this.components?.map { it.toModel() } ?: emptyList(),
         instructions = this.instructions?.map { it.toModel() } ?: emptyList(),
-        nutrition = this.nutrition?.toModel()  // Map nutrition field
+        nutrition = this.nutrition?.toModel() // Map nutrition field
     )
 }
 

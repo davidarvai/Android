@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,7 +20,7 @@
 
             <ImageView
                 android:id="@+id/recipeDetailImageView"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:contentDescription="RecipeImage"
                 android:scaleType="centerCrop"/>
@@ -41,6 +40,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textColor="#000000"/>
+
+            <!-- Video -->
+            <VideoView
+                android:id="@+id/recipeVideoView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp" />
+
+            <!-- Keywords -->
+            <TextView
+                android:id="@+id/keywordsTitleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Keywords:"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/recipeKeywordsView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#000000"/>
 
