@@ -11,7 +11,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home"/>
 
-    <fragment android:id="@+id/profileFragment"
+    <fragment
+        android:id="@+id/profileFragment"
         android:name="com.example.android_project.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
@@ -19,12 +20,8 @@
         <action
             android:id="@+id/action_profileFragment_to_newRecipeFragment"
             app:destination="@id/newRecipeFragment"/>
-
-        <action
-            android:id="@+id/action_profileFragment_to_recipeDetailFragment"
-            app:destination="@id/recipeDetailFragment"/>
-
     </fragment>
+
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="com.example.android_project.RecipeDetailFragment"

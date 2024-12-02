@@ -6,9 +6,11 @@
     android:background="@drawable/backgrund1"
     tools:context=".ProfileFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_recipes"
+    <Button
+        android:id="@+id/btn_back_to_new_recipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:text="Go Back to New Recipe"
+        android:layout_marginTop="16dp"/>
 
 </FrameLayout>
