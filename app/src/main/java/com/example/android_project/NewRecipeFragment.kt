@@ -114,7 +114,7 @@ class NewRecipeFragment : Fragment() {
             keywords = "",
             components = components,
             instructions = instructions,
-            originalVideoUrl = originalVideoUrl // Pass the missing parameter
+            originalVideoUrl = originalVideoUrl
         )
 
         lifecycleScope.launch {

@@ -1,16 +1,21 @@
 package repository.recipe
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class RecipeSharedViewModel : ViewModel() {
-    // Mutable list of recipes
-    var recipesList: MutableLiveData<MutableList<RecipesModel>> = MutableLiveData(mutableListOf())
 
-    // Add a new recipe
+    private val _recipesList = MutableLiveData<MutableList<RecipesModel>>()
+    val recipesList: LiveData<MutableList<RecipesModel>> get() = _recipesList
+
+    init {
+        _recipesList.value = mutableListOf()  // Kezdeti üres lista
+    }
+
     fun addRecipe(recipe: RecipesModel) {
-        val currentList = recipesList.value ?: mutableListOf()
+        val currentList = _recipesList.value?.toMutableList() ?: mutableListOf()
         currentList.add(recipe)
-        recipesList.value = currentList
+        _recipesList.value = currentList  // Frissítjük a listát
     }
 }
