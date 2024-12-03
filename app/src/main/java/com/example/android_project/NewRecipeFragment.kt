@@ -15,6 +15,7 @@ import repository.recipe.ComponentModel
 import repository.recipe.InstructionModel
 import repository.recipe.RecipeSharedViewModel
 import repository.recipe.RecipesModel
+import repository.recipe.SharedPreferencesHelper
 
 class NewRecipeFragment : Fragment() {
 
@@ -119,6 +120,7 @@ class NewRecipeFragment : Fragment() {
 
         lifecycleScope.launch {
             sharedViewModel.addRecipe(newRecipe)
+            SharedPreferencesHelper.saveRecipesToPreferences(sharedViewModel.recipesList.value!!, requireContext())  // Elmentjük a receptet
             parentFragmentManager.popBackStack()
         }
     }

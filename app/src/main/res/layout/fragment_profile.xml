@@ -1,20 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_back_to_new_recipe"
-        android:layout_width="match_parent"
+    <!-- Tetején megjelenő üdvözlő szöveg -->
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back to New Recipe" />
+        android:text="Welcome to your profile"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:fontFamily="sans-serif-medium"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="16dp" />
+
+    <!-- Középső szöveg, amely megjeleníti az üzenetet -->
+
 
     <TextView
         android:id="@+id/recipes_text_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No recipes found"
+        android:textSize="16sp"
+        android:layout_below="@id/welcome_text"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
-</LinearLayout>
+
+    <!-- Alsó jobb sarokban található zöld + gomb -->
+    <ImageButton
+        android:id="@+id/btn_back_to_new_recipe"
+        android:layout_width="87dp"
+        android:layout_height="78dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/round_button_background"
+        android:contentDescription="Add" />
+</RelativeLayout>
