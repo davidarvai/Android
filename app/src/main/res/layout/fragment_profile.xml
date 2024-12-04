@@ -29,6 +29,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
 
+    <!-- RecyclerView to display the recipes -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipes_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recipes_text_view"
+        android:layout_marginTop="16dp"/>
+
     <!-- Zöld gomb, hozzáadás -->
     <ImageButton
         android:id="@+id/btn_back_to_new_recipe"
