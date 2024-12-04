@@ -19,8 +19,6 @@
         android:paddingBottom="16dp" />
 
     <!-- Középső szöveg, amely megjeleníti az üzenetet -->
-
-
     <TextView
         android:id="@+id/recipes_text_view"
         android:layout_width="wrap_content"
@@ -31,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp" />
 
-    <!-- Alsó jobb sarokban található zöld + gomb -->
+    <!-- Zöld gomb, hozzáadás -->
     <ImageButton
         android:id="@+id/btn_back_to_new_recipe"
         android:layout_width="87dp"
@@ -46,4 +44,16 @@
         android:layout_marginBottom="50dp"
         android:background="@drawable/round_button_background"
         android:contentDescription="Add" />
+
+    <!-- Delete button, bal alsó sarokban -->
+    <ImageButton
+        android:id="@+id/btn_delete_recipe"
+        android:layout_width="87dp"
+        android:layout_height="78dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/baseline_delete_24"
+        android:contentDescription="Delete" />
 </RelativeLayout>
