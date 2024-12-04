@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:paddingBottom="80dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,25 +13,49 @@
             android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"/>
+            android:hint="Title"
+            android:inputType="text"
+            android:padding="8dp"
+            android:backgroundTint="@color/black"/>
 
         <EditText
             android:id="@+id/et_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"/>
+            android:hint="Description"
+            android:inputType="text"
+            android:padding="8dp"
+            android:backgroundTint="@color/black"/>
 
         <EditText
             android:id="@+id/et_picture_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Picture URL"/>
+            android:hint="Picture URL"
+            android:inputType="text"
+            android:padding="8dp"
+            android:backgroundTint="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Video URL"
+            android:layout_marginTop="16dp"/>
 
         <EditText
             android:id="@+id/et_video_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Video URL"/>
+            android:hint="Video URL"
+            android:padding="8dp"
+            android:backgroundTint="@color/black"/>
+
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,7 +73,9 @@
             android:id="@+id/btn_add_ingredient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Ingredient"/>
+            android:text="Add Ingredient"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,13 +93,16 @@
             android:id="@+id/btn_add_instruction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Instruction"/>
+            android:text="Add Instruction"
+            android:padding="8dp"
+            android:layout_marginTop="8dp"/>
 
         <Button
             android:id="@+id/btn_save_recipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save Recipe"
+            android:padding="8dp"
             android:layout_marginTop="16dp"/>
     </LinearLayout>
 </ScrollView>

@@ -8,9 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
+import android.widget.VideoView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import repository.recipe.ComponentModel
 import repository.recipe.InstructionModel
 import repository.recipe.RecipeSharedViewModel
@@ -25,6 +29,7 @@ class NewRecipeFragment : Fragment() {
     private lateinit var recipeDescription: EditText
     private lateinit var recipePictureUrl: EditText
     private lateinit var recipeVideoUrl: EditText
+    private lateinit var videoView: VideoView
 
     private val sharedViewModel: RecipeSharedViewModel by activityViewModels()
 
@@ -38,6 +43,21 @@ class NewRecipeFragment : Fragment() {
         recipeDescription = view.findViewById(R.id.et_description)
         recipePictureUrl = view.findViewById(R.id.et_picture_url)
         recipeVideoUrl = view.findViewById(R.id.et_video_url)
+        val videoView = view.findViewById<VideoView>(R.id.videoView)
+
+        recipeVideoUrl.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                val videoUrl = recipeVideoUrl.text.toString()
+                if (videoUrl.isNotBlank()) {
+                    videoView.setVideoPath(videoUrl)
+                    videoView.visibility = View.VISIBLE
+                    videoView.start()
+                } else {
+                    videoView.visibility = View.GONE
+                }
+            }
+        }
+
         ingredientsContainer = view.findViewById(R.id.ingredients_container)
         instructionsContainer = view.findViewById(R.id.instructions_container)
 
@@ -54,6 +74,43 @@ class NewRecipeFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun playVideo() {
+        val videoUrl = recipeVideoUrl.text.toString()
+
+        if (videoUrl.isNotEmpty()) {
+            lifecycleScope.launch {
+                try {
+                    // Simulating a delay to show asynchronous behavior (like network call)
+                    withContext(Dispatchers.IO) {
+                        // Simulate network/video loading time if necessary
+                        Thread.sleep(500)
+                    }
+
+                    // Update UI on main thread
+                    withContext(Dispatchers.Main) {
+                        videoView.setVideoPath(videoUrl)
+                        videoView.setVisibility(View.VISIBLE)
+                        videoView.setOnPreparedListener { mp ->
+                            // Once prepared, start playing the video
+                            videoView.start()
+                        }
+
+                        // Handle errors if video fails to load
+                        videoView.setOnErrorListener { _, _, _ ->
+                            Toast.makeText(context, "Error loading video", Toast.LENGTH_SHORT).show()
+                            return@setOnErrorListener true
+                        }
+                    }
+                } catch (e: Exception) {
+                    // Handle any errors that may occur
+                    Toast.makeText(context, "Video loading failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            Toast.makeText(context, "Please enter a valid video URL", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun addIngredientField() {
@@ -120,7 +177,7 @@ class NewRecipeFragment : Fragment() {
 
         lifecycleScope.launch {
             sharedViewModel.addRecipe(newRecipe)
-            SharedPreferencesHelper.saveRecipesToPreferences(sharedViewModel.recipesList.value!!, requireContext())  // Elmentjük a receptet
+            SharedPreferencesHelper.saveRecipesToPreferences(sharedViewModel.recipesList.value!!, requireContext())
             parentFragmentManager.popBackStack()
         }
     }
