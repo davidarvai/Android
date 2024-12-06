@@ -4,112 +4,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
+    android:padding="16dp"
     tools:context="RecipeDetailFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="ScrollViewCount,UselessParent"
-        android:paddingBottom="50dp">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:paddingBottom="50dp"
+    tools:ignore="ScrollViewCount,UselessParent">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:ignore="UselessLeaf">
+<TableLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:padding="8dp">
 
-            <ImageView
-                android:id="@+id/recipeDetailImageView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:contentDescription="RecipeImage"
-                android:scaleType="centerCrop"/>
+<ImageView
+    android:id="@+id/recipeDetailImageView"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:contentDescription="RecipeImage"
+    android:scaleType="centerCrop"/>
 
-            <TextView
-                android:id="@+id/recipeDetailTitleView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#000000"
-                android:background="#4CAF50"/>
+<TextView
+    android:id="@+id/recipeDetailTitleView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:textColor="#000000"
+    android:background="#4CAF50"/>
 
-            <TextView
-                android:id="@+id/recipeDetailDescriptionView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:textColor="#000000"/>
+<TextView
+    android:id="@+id/recipeDetailDescriptionView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:textSize="14sp"
+    android:textColor="#000000"/>
 
-            <!-- Video -->
-            <VideoView
-                android:id="@+id/recipeVideoView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="8dp" />
+<!-- Video -->
+<VideoView
+    android:id="@+id/recipeVideoView"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginTop="8dp" />
 
-            <!-- Keywords -->
-            <TextView
-                android:id="@+id/keywordsTitleView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Keywords:"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+<!-- Keywords -->
+<TextView
+    android:id="@+id/keywordsTitleView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Keywords:"
+    android:textSize="16sp"
+    android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/recipeKeywordsView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#000000"/>
+<TextView
+    android:id="@+id/recipeKeywordsView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="14sp"
+    android:textColor="#000000"/>
 
-            <!-- Ingredients -->
-            <TextView
-                android:id="@+id/ingredientsTitleView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ingredients"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+<!-- Ingredients -->
+<TextView
+    android:id="@+id/ingredientsTitleView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Ingredients"
+    android:textSize="16sp"
+    android:textStyle="bold"/>
 
-            <LinearLayout
-                android:id="@+id/ingredientsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+<LinearLayout
+    android:id="@+id/ingredientsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"/>
 
-            <!-- Instructions -->
-            <TextView
-                android:id="@+id/instructionsTitleView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Instructions"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+<!-- Instructions -->
+<TextView
+    android:id="@+id/instructionsTitleView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Instructions"
+    android:textSize="16sp"
+    android:textStyle="bold"/>
 
-            <LinearLayout
-                android:id="@+id/instructionsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+<LinearLayout
+    android:id="@+id/instructionsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"/>
 
-            <!-- Nutrition -->
-            <TextView
-                android:id="@+id/nutritionTitleView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nutrition Information"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+<!-- Nutrition -->
+<TextView
+    android:id="@+id/nutritionTitleView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Nutrition Information"
+    android:textSize="16sp"
+    android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/recipeNutritionDetailsView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+<TextView
+    android:id="@+id/recipeNutritionDetailsView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
 
-        </TableLayout>
+</TableLayout>
     </ScrollView>
-</FrameLayout>
+    </FrameLayout>
