@@ -32,6 +32,7 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
+        // Initialize views
         recipesRecyclerView = view.findViewById(R.id.recipes_recycler_view)
         deleteButton = view.findViewById(R.id.btn_delete_recipe)
 
@@ -61,12 +62,13 @@ class ProfileFragment : Fragment() {
         // Delete button click
         deleteButton.setOnClickListener {
             // Check if a recipe is selected
-            selectedRecipe?.let {
+            selectedRecipe?.let { recipe ->
                 val recipes = SharedPreferencesHelper.loadRecipesFromPreferences(requireContext())
-                val updatedRecipes = recipes.filter { recipe -> recipe != selectedRecipe }
+                val updatedRecipes = recipes.filter { it.id != recipe.id }
                 SharedPreferencesHelper.saveRecipesToPreferences(updatedRecipes, requireContext())
                 setupRecyclerView(updatedRecipes) // Update UI
                 Toast.makeText(requireContext(), "Recipe deleted successfully", Toast.LENGTH_SHORT).show()
+                selectedRecipe = null // Clear selection after deletion
             } ?: run {
                 Toast.makeText(requireContext(), "No recipe selected for deletion", Toast.LENGTH_SHORT).show()
             }

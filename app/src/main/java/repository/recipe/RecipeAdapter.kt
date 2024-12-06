@@ -3,9 +3,11 @@ package repository.recipe
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
+import com.bumptech.glide.Glide
+import com.example.android_project.R
 
 class RecipeAdapter(
     private val recipes: List<RecipesModel>,
@@ -13,23 +15,33 @@ class RecipeAdapter(
 ) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(android.R.layout.simple_list_item_2, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recipe_list_item, parent, false)
         return RecipeViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         val recipe = recipes[position]
-        holder.nameTextView.text = recipe.name
+
+        holder.titleTextView.text = recipe.name
         holder.descriptionTextView.text = recipe.description
+        holder.keywordsTextView.text = recipe.keywords
+
+        Glide.with(holder.itemView.context)
+            .load(recipe.thumbnailUrl)
+            .placeholder(R.drawable.placeholder_image)
+            .into(holder.recipeImageView)
+
         holder.itemView.setOnClickListener {
             onRecipeClickListener(recipe)
         }
     }
 
-    override fun getItemCount() = recipes.size
+    override fun getItemCount(): Int = recipes.size
 
     class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameTextView: TextView = itemView.findViewById(android.R.id.text1)
-        val descriptionTextView: TextView = itemView.findViewById(android.R.id.text2)
+        val recipeImageView: ImageView = itemView.findViewById(R.id.recipeView)
+        val titleTextView: TextView = itemView.findViewById(R.id.recipeItemTitleView)
+        val descriptionTextView: TextView = itemView.findViewById(R.id.recipeItemDescriptionView)
+        val keywordsTextView: TextView = itemView.findViewById(R.id.recipeKeywordsView)
     }
 }
