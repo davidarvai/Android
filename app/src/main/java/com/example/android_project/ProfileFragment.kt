@@ -23,6 +23,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var recipesRecyclerView: RecyclerView
     private lateinit var deleteButton: ImageButton
+    private lateinit var adapter: RecipeAdapter
     private var selectedRecipe: RecipesModel? = null
     private val sharedViewModel: RecipeSharedViewModel by activityViewModels()
 
@@ -36,55 +37,43 @@ class ProfileFragment : Fragment() {
         recipesRecyclerView = view.findViewById(R.id.recipes_recycler_view)
         deleteButton = view.findViewById(R.id.btn_delete_recipe)
 
-        // Load recipes from SharedPreferences
-        val recipes = SharedPreferencesHelper.loadRecipesFromPreferences(requireContext())
-        if (recipes.isEmpty()) {
-            Toast.makeText(requireContext(), "No recipes found", Toast.LENGTH_SHORT).show()
-        } else {
-            setupRecyclerView(recipes)
+        // Initialize adapter
+        adapter = RecipeAdapter(mutableListOf()) { recipe ->
+            selectedRecipe = recipe
+            Toast.makeText(requireContext(), "Selected ${recipe.name} for deletion", Toast.LENGTH_SHORT).show()
         }
+        recipesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recipesRecyclerView.adapter = adapter
 
-        // Observer for recipe list changes
-        sharedViewModel.recipesList.observe(viewLifecycleOwner, Observer { recipes ->
-            if (recipes.isEmpty()) {
-                Toast.makeText(requireContext(), "No recipes found", Toast.LENGTH_SHORT).show()
-            } else {
-                SharedPreferencesHelper.saveRecipesToPreferences(recipes, requireContext())
-                setupRecyclerView(recipes) // Update RecyclerView with new data
-            }
+        // Observe changes in recipes
+        sharedViewModel.recipesList.observe(viewLifecycleOwner, Observer { newRecipes ->
+            adapter.updateData(newRecipes)
         })
 
-        // Add new recipe button click
-        view.findViewById<ImageButton>(R.id.btn_back_to_new_recipe).setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_newRecipeFragment)
+        // Handle delete button click
+        deleteButton.setOnClickListener {
+            selectedRecipe?.let { recipe ->
+                val currentRecipes = adapter.recipes.toMutableList()
+                currentRecipes.remove(recipe)
+                adapter.updateData(currentRecipes)
+                SharedPreferencesHelper.saveRecipesToPreferences(currentRecipes, requireContext())
+                Toast.makeText(requireContext(), "Recipe deleted successfully", Toast.LENGTH_SHORT).show()
+                selectedRecipe = null
+            } ?: Toast.makeText(requireContext(), "No recipe selected for deletion", Toast.LENGTH_SHORT).show()
         }
 
-        // Delete button click
-        deleteButton.setOnClickListener {
-            // Check if a recipe is selected
-            selectedRecipe?.let { recipe ->
-                val recipes = SharedPreferencesHelper.loadRecipesFromPreferences(requireContext())
-                val updatedRecipes = recipes.filter { it.id != recipe.id }
-                SharedPreferencesHelper.saveRecipesToPreferences(updatedRecipes, requireContext())
-                setupRecyclerView(updatedRecipes) // Update UI
-                Toast.makeText(requireContext(), "Recipe deleted successfully", Toast.LENGTH_SHORT).show()
-                selectedRecipe = null // Clear selection after deletion
-            } ?: run {
-                Toast.makeText(requireContext(), "No recipe selected for deletion", Toast.LENGTH_SHORT).show()
-            }
+        // Handle back to new recipe button click
+        view.findViewById<ImageButton>(R.id.btn_back_to_new_recipe).setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_newRecipeFragment)
         }
 
         return view
     }
 
-    private fun setupRecyclerView(recipes: List<RecipesModel>) {
-        // Set up the RecyclerView with a LinearLayoutManager and the RecipeAdapter
-        recipesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = RecipeAdapter(recipes) { recipe ->
-            // When a recipe is clicked, set it as the selected one
-            selectedRecipe = recipe
-            Toast.makeText(requireContext(), "Selected ${recipe.name} for deletion", Toast.LENGTH_SHORT).show()
-        }
-        recipesRecyclerView.adapter = adapter
+    override fun onResume() {
+        super.onResume()
+        // Load recipes from SharedPreferences on resume
+        val savedRecipes = SharedPreferencesHelper.loadRecipesFromPreferences(requireContext())
+        adapter.updateData(savedRecipes)
     }
 }

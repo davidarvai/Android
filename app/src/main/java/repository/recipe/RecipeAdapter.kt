@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.android_project.R
 
 class RecipeAdapter(
-    private val recipes: List<RecipesModel>,
+    var recipes: MutableList<RecipesModel>,
     private val onRecipeClickListener: (RecipesModel) -> Unit
 ) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
 
@@ -37,6 +37,20 @@ class RecipeAdapter(
     }
 
     override fun getItemCount(): Int = recipes.size
+
+    fun updateData(newRecipes: List<RecipesModel>) {
+        recipes.clear()
+        recipes.addAll(newRecipes)
+        notifyDataSetChanged()
+    }
+
+    fun removeItem(recipe: RecipesModel) {
+        val position = recipes.indexOf(recipe)
+        if (position >= 0) {
+            recipes.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
 
     class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val recipeImageView: ImageView = itemView.findViewById(R.id.recipeView)
